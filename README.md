@@ -16,9 +16,17 @@ Softmax converts the raw scores (logits) from the model into probabilities by ta
 
 In scenarios where an input needs to be classified into one of several possible categories, softmax provides a means to identify the probability that the input belongs to each category. It is particularly useful in the final layer of a neural network model for multi-class classification tasks.  
 
-#### Differentiability:
+#### Gradient Optimization Compatibility:
 
-The softmax function is continuous and differentiable. This means that we can use it in conjunction with gradient-based optimization methods, which are central to the training of neural networks. The differentiability of softmax allows for the computation of gradients which are necessary for the backpropagation algorithm.  
+The softmax function is smooth and differentiable. This property is crucial because it allows the function to be incorporated into a neural network model where gradient-based optimization methods, such as stochastic gradient descent, are used. The gradients of the softmax function can be easily computed, enabling efficient training of the model through backpropagation.  
+
+#### Exploiting the Relative Differences Between Logits:
+
+By using the exponential function, softmax amplifies the differences between the logits. This means that even small differences in the logits can lead to significant differences in the probabilities, making it easier for the model to differentiate between more and less likely classes.  
+
+#### Enhancing Numerical Stability:
+
+Softmax incorporates a technique for numerical stability by subtracting the maximum logit from all logits before exponentiation. This adjustment prevents potential numerical overflow by ensuring that the largest exponent in the numerator and denominator is 0, making the softmax function more robust in practice.
 
 #### Soft Decision Boundaries:
 
